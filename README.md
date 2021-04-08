@@ -37,16 +37,25 @@ Then you can view all possible board combination in text file using your favorit
 ## Performance
 
 nqueen % time java -jar build/libs/nqueen.jar 4 y > 4.txt
+
 java -jar build/libs/nqueen.jar 4 y > 4.txt  0.09s user 0.03s system 125% cpu 0.097 total
 
 nqueen % time java -jar build/libs/nqueen.jar 5 y > 5.txt
+
 java -jar build/libs/nqueen.jar 5 y > 5.txt  0.15s user 0.03s system 150% cpu 0.123 total
 
 nqueen % time java -jar build/libs/nqueen.jar 6 y > 6.txt
+
 java -jar build/libs/nqueen.jar 6 y > 6.txt  0.27s user 0.04s system 184% cpu 0.169 total
 
 nqueen % time java -jar build/libs/nqueen.jar 7 y > 7.txt
+
 java -jar build/libs/nqueen.jar 7 y > 7.txt  1.98s user 0.12s system 177% cpu 1.183 total
 
 nqueen % time java -jar build/libs/nqueen.jar 8 y > 8.txt
+
 java -jar build/libs/nqueen.jar 8 y > 8.txt  27.93s user 0.19s system 102% cpu 27.555 total
+
+nqueen % time java -jar build/libs/nqueen.jar 9 y > 9.txt
+
+java -jar build/libs/nqueen.jar 9 y > 9.txt  1133.09s user 3.54s system 100% cpu 18:51.88 total
