@@ -2,6 +2,8 @@ package nqueen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * For a N x N Chess Board, generate list of position so that N queens can be
@@ -11,39 +13,23 @@ import java.util.List;
  */
 public class SingleSolutionForNQueen {
 
+	/**
+	 * Given N x N board this method returns exactly one solution to 
+	 * arrange N queens, so that now two queen blocks each other path.
+	 * 
+	 * @param boardSize
+	 * @return
+	 */
 	public static List<Integer> findOne(int boardSize) {
 
-		List<Integer> positions = generatePositions(boardSize);
-		List<Integer> evenList = new ArrayList<Integer>();
-		List<Integer> oddList = new ArrayList<Integer>();
+		List<Integer> positions = IntStream.rangeClosed(1, boardSize).boxed().collect(Collectors.toList());
+		List<Integer> evenList = positions.stream().filter(i -> i % 2 == 0).collect(Collectors.toList());
+		List<Integer> oddList = positions.stream().filter(i -> i % 2 != 0).collect(Collectors.toList());
 		List<Integer> answers = new ArrayList<Integer>(positions.size());
-
-		if (boardSize % 6 != 2 && boardSize % 6 != 3) {
-
-			// If the remainder from dividing board size by 6 is not 2 or 3,
-			// then the list is simply all even numbers followed by all odd numbers not
-			// greater than n.
-			for (int i : positions) {
-				if (i % 2 == 0) {
-					evenList.add(i);
-				} else {
-					oddList.add(i);
-				}
-			}
-
-			answers.addAll(evenList);
-			answers.addAll(oddList);
-
-		} else if (boardSize % 6 == 2) {
-
-			for (int i : positions) {
-				if (i % 2 == 0) {
-					evenList.add(i);
-				} else {
-					oddList.add(i);
-				}
-			}
-
+		
+		// See Paper: Explicit Solutions to the N-Queens Problem for all N.
+		if (boardSize % 6 == 2) {
+			
 			int temp = oddList.get(0);
 			oddList.set(0, oddList.get(1));
 			oddList.set(1, temp);
@@ -51,18 +37,7 @@ public class SingleSolutionForNQueen {
 			temp = oddList.remove(2);
 			oddList.add(temp);
 
-			answers.addAll(evenList);
-			answers.addAll(oddList);
-
 		} else if (boardSize % 6 == 3) {
-
-			for (int i : positions) {
-				if (i % 2 == 0) {
-					evenList.add(i);
-				} else {
-					oddList.add(i);
-				}
-			}
 
 			int elem = evenList.remove(0);
 			evenList.add(elem);
@@ -73,14 +48,24 @@ public class SingleSolutionForNQueen {
 			elem = oddList.remove(0);
 			oddList.add(elem);
 
-			answers.addAll(evenList);
-			answers.addAll(oddList);
-		}
+		} else {
+			// handle boardSize % 6 != 3 && boardSize % 6 != 2 case.
+			// The solution to just add append odd list to even list.
+		} 
 
+		answers.addAll(evenList);
+		answers.addAll(oddList);
+		
 		return answers;
 
 	}
 
+	/**
+	 * Print the board based on list of Queen's positions.
+	 * 
+	 * @param boardSize
+	 * @param answers
+	 */
 	public static void printBoard(int boardSize, List<Integer> answers) {
 		for (int i = 0; i < boardSize; i++) {
 
@@ -97,22 +82,6 @@ public class SingleSolutionForNQueen {
 			}
 			System.out.print(" | ");
 		}
-	}
-
-	private static List<Integer> generatePositions(int boardSize) {
-		List<Integer> positions = new ArrayList<Integer>();
-
-		for (int i = 1; i <= boardSize; i++) {
-
-			if (i % 2 == 0) {
-				positions.add(i);
-			} else {
-				positions.add(i);
-			}
-		}
-
-		return positions;
-
 	}
 
 }
