@@ -28,8 +28,11 @@ NOTE: If second option is not used, the program will print  count of valid board
 If you are going to run the program from command prompt with 'y', it will print lot of values for N > 6. Better approach is to just pipe it to text file. Example:
 
  nqueen $ java -jar build/libs/nqueen.jar 5 y > 5.txt
+ 
  nqueen % java -jar build/libs/nqueen.jar 6 y > 6.txt
- nqueen % java -jar build/libs/nqueen.jar 7 y > 7.txt 
+ 
+ nqueen % java -jar build/libs/nqueen.jar 7 y > 7.txt
+ 
  nqueen % java -jar build/libs/nqueen.jar 8 y > 8.txt
 
 Then you can view all possible board combination in text file using your favorite text editor.
