@@ -19,6 +19,7 @@ $ java -jar build/libs/nqueen.jar N y
 Currently two arguments are supported. 
 
 N -> Required. which is number of Queens on N x N board. Valid values are N = 4, 5, 6,......
+
 y -> Options. just 'y' to print all possible N x N board, which meets the criteria.
 
 NOTE: If second option is not used, the program will print  count of valid board only.
