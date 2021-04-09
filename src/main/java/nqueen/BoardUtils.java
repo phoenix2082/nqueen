@@ -6,42 +6,58 @@ import java.util.List;
 import java.util.Set;
 
 public class BoardUtils {
-	
+
 	public static final byte EMPTY = 0;
 	public static final byte QUEEN = 1;
 	public static final byte BLOCKED = -1;
-	
+
 	static Set<Board> answers = new HashSet<Board>();
-	
+
 	/**
 	 * This method recursively, process row and column. Put a Queen at available
-	 * square. Mark all the squares as not available as per Queen's position. Find
-	 * Remaining available squares. Repeat until on more empty squares left.
+	 * square. Mark all the squares as not available as per Queen's position i.e.
+	 * Block row, column and diagonal direction. Find Remaining available squares.
+	 * Repeat until on more empty squares left.
 	 * 
 	 * @param row
 	 * @param col
 	 * @param board
 	 */
 	static void processPosition(int row, int col, Board board) {
+		
+		// Place a Queen.
 		putMarks(row, col, board);
+		
+		// Mark square as BLOCKED as per queen's path.
 		blockPosition(row, col, board);
 
+		// Get all empty squares.
 		List<Tracker> trackers = availablePositions(board);
 
 		if (trackers.isEmpty()) {
+
+			// All squares on Chess Board is filled with queens or marked blocked.
 			// Save only those boards, which has N number of Queens for N x N board.
 			// Ignore duplicates, found due to the fact that Chess board is symmetrical.
+
 			if (board.getQueenCount() == board.getRows()) {
 				answers.add(board);
 			}
 		} else {
+
 			for (Tracker tk : trackers) {
-				Board nBoard = copyBoard(board);
+				
+				// Create a copy of board.
+				Board nBoard = copyBoard(board); 
+
+				// For each new board continue placing queen on empty square
+				// blocking squares as per queen's path and continue
+				// looking for next empty space
 				processPosition(tk.getRow(), tk.getCol(), nBoard);
 			}
 		}
 	}
-	
+
 	/**
 	 * Find all the squares available for placing Queen.
 	 * 
@@ -80,8 +96,7 @@ public class BoardUtils {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param board
-	 * @thboard.getRows() IllegalArgumentException
+	 * @param board  @thboard.getRows() IllegalArgumentException
 	 */
 	private static void putMarks(int row, int column, Board board) {
 		if (row < 0 || row >= board.getRows() && (column < 0 || column >= board.getCols()))
@@ -173,7 +188,7 @@ public class BoardUtils {
 		}
 
 	}
-	
+
 	/**
 	 * Create a new board.
 	 * 
@@ -182,7 +197,8 @@ public class BoardUtils {
 	 */
 	private static Board copyBoard(Board board) {
 		Board nBoard = new Board(board.getRows(), board.getCols());
-
+		//nBoard.setBoard(board.getBoard());
+		
 		for (int i = 0; i < board.getRows(); i++) {
 			for (int j = 0; j < board.getRows(); j++) {
 				nBoard.setBoardPosition(i, j, board.getBoardPosition(i, j));
@@ -192,6 +208,5 @@ public class BoardUtils {
 
 		return nBoard;
 	}
-
 
 }

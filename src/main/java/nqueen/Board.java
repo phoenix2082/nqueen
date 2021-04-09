@@ -39,7 +39,7 @@ public class Board {
 		}
 		this.rows = rows;
 		this.cols = cols;
-		board = new byte[rows][cols];
+		this.board = new byte[rows][cols];
 	}
 	
 	/**
@@ -113,6 +113,6 @@ public class Board {
 			System.out.print(" | ");
 		}
 		System.out.println();
-	}
+	}	
 
 }

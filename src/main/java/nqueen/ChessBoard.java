@@ -1,7 +1,6 @@
 package nqueen;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * N Queen Problem.
@@ -21,7 +20,7 @@ public class ChessBoard {
 
 		if (args.length < 1) {
 			System.out.println("Please enter size of board.");
-			System.out.println("Usage: java -jar build/libs/nqueen.jar n p");
+			System.out.println("Usage: java -jar build/libs/nqueen.jar N y/n p");
 			System.exit(0);
 		}
 
@@ -30,26 +29,44 @@ public class ChessBoard {
 		byte rows = boardSize;
 		byte cols = boardSize;
 
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				Board board = new Board(rows, cols);
-				BoardUtils.processPosition(i, j, board);
-				BoardUtils.resetBoard(board);
-			}
-		}
-
-		System.out.println("Total Board Found: " + BoardUtils.answers.size());
-
 		if (args.length > 1) {
-			String printBoard = args[1];
 
-			if ("y".equalsIgnoreCase(printBoard)) {
-				for (Board b : BoardUtils.answers) {
-					b.print();
+			String single = args[1];
+
+			if ("y".equalsIgnoreCase(single)) {
+				
+				//Generate s single solution, print and exit.
+				List<Integer> positions = SingleSolutionForNQueen.findOne(boardSize);
+				SingleSolutionForNQueen.printBoard(boardSize, positions);
+				
+			} else if("n".equalsIgnoreCase(single)) {
+
+				// Find all possible boards
+				for (int i = 0; i < rows; i++) {
+					for (int j = 0; j < cols; j++) {
+						Board board = new Board(rows, cols);
+						BoardUtils.processPosition(i, j, board);
+						BoardUtils.resetBoard(board);
+					}
 				}
+
+				System.out.println("Total Board Found: " + BoardUtils.answers.size());
+
+				if (args.length > 2) {
+					String printBoard = args[2];
+
+					if ("p".equalsIgnoreCase(printBoard)) {
+						for (Board b : BoardUtils.answers) {
+							b.print();
+						}
+					}
+				}
+
+			} else {
+				System.out.println("Invalid input argument.");
 			}
 		}
 
 	}
-	
+
 }
