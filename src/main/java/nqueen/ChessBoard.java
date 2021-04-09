@@ -37,7 +37,16 @@ public class ChessBoard {
 				
 				//Generate s single solution, print and exit.
 				List<Integer> positions = SingleSolutionForNQueen.findOne(boardSize);
-				SingleSolutionForNQueen.printBoard(boardSize, positions);
+				
+				System.out.println("First Solution: " + positions);
+				
+				if (args.length > 2) {
+					String printBoard = args[2];
+					
+					if ("p".equalsIgnoreCase(printBoard)) {
+						SingleSolutionForNQueen.printBoard(boardSize, positions);
+					}
+				}
 				
 			} else if("n".equalsIgnoreCase(single)) {
 
