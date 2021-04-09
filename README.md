@@ -14,15 +14,35 @@ This will create executable jar at path - "build/libs/nqueen.jar".
 
 You can run executable jar with following command.
 
-$ java -jar build/libs/nqueen.jar N y
+$ java -jar build/libs/nqueen.jar N y/n p
 
 Currently two arguments are supported. 
 
 N -> Required. which is number of Queens on N x N board. Valid values are N = 4, 5, 6,......
 
-y -> Options. just 'y' to print all possible N x N board, which meets the criteria.
+y/n -> Options. 'y' for finding single solution. 'n' for finding all possible solutions.
 
-NOTE: If second option is not used, the program will print  count of valid board only.
+p - just 'p' to print N x N board, which meets the criteria. 
+
+NOTE: If second option is not used, the program will print list of positions for a single board or count of valid board only when all possible board is selected.
+
+## Example Board
+
+ | . | . | . | Q | . | . | . | . | 
+ 
+ | . | . | . | . | . | . | Q | . | 
+ 
+ | . | . | Q | . | . | . | . | . | 
+ 
+ | . | . | . | . | . | . | . | Q | 
+ 
+ | . | Q | . | . | . | . | . | . | 
+ 
+ | . | . | . | . | Q | . | . | . | 
+ 
+ | Q | . | . | . | . | . | . | . | 
+ 
+ | . | . | . | . | . | Q | . | . |
 
 ## Writing Boards to text file.
 
