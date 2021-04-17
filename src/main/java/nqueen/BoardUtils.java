@@ -79,19 +79,6 @@ public class BoardUtils {
 	}
 
 	/**
-	 * Reset board to empty state.
-	 * 
-	 * @param board
-	 */
-	static void resetBoard(Board board) {
-		for (int i = 0; i < board.getRows(); i++) {
-			for (int j = 0; j < board.getCols(); j++) {
-				board.setBoardPosition(i, j, EMPTY);
-			}
-		}
-	}
-
-	/**
 	 * Place a Queen at index given by row and column.
 	 * 
 	 * @param row

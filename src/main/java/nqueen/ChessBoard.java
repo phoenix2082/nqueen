@@ -55,7 +55,6 @@ public class ChessBoard {
 					for (int j = 0; j < cols; j++) {
 						Board board = new Board(rows, cols);
 						BoardUtils.processPosition(i, j, board);
-						BoardUtils.resetBoard(board);
 					}
 				}
 
